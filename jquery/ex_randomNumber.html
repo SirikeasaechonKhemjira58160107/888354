@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<script>
+$(document).ready(function(){
+  random();
+});
+
+function random() {
+  var min = -999, max = 999;
+  var first = Math.floor(Math.random()*(max-min)+min);
+  var second = Math.floor(Math.random()*(max-min)+min);
+  var sum = first + second;
+  $("#q").html(first +" + "+second+" = ");
+  $("#hidden_sum").val(sum);
+  $("#text_check").html(" ");
+  $("#result").val("");
+
+}
+
+function answer(){
+  var result = $("#result").val();
+  var sum = $("#hidden_sum").val();
+  if(sum == result){
+    $("#text_check").html("That's correct");
+    $("#text_check").css("color", "green");
+  }else{
+    $("#text_check").html("That's wrong. The answer is "+sum);
+    $("#text_check").css("color", "red");
+  }
+}
+
+</script>
+<body>
+  <center>
+    <h1>Ex1	- Random Number for Answer</h1>
+    <hr>
+    <button onclick="random();">Random Number</button>
+    <br><br>
+    <a id="q"></a><input type="text" name="result" id="result">
+    <input type="hidden" name="" id="hidden_sum">
+    <br><br>
+    <button onclick="answer();">Send Answer</button>
+    <br><br>
+    <p>Result : <a id="text_check"></a></p>
+  </center>
+</body>
+</html>
